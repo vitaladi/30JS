@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CSS JS OCLOCK</title>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand" style="transform: rotate(60deg)"></div>
+        <div class="hand min-hand" style="transform: rotate(60deg)"></div>
+        <div class="hand second-hand" style="transform: rotate(60deg)"></div>
+      </div>
+    </div>
+
+    <script>
+      const secondHand = document.querySelector(".second-hand");
+      const hourHand = document.querySelector(".hour-hand");
+      const minsHand = document.querySelector(".min-hand");
+
+      function setDate() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const secondsDegrees = (seconds / 60) * 360 + 90;
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        const mins = now.getMinutes();
+        const minsDegrees = (mins / 60) * 360 + 90;
+        minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+        const hour = now.getHours();
+        const hourDegrees = (mins / 24) * 360 + 90;
+        hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+        /* set color red for hour*/
+        if (hour >= 12) {
+          hourHand.style.color = "red";
+        } else {
+          hourHand.style.color = "Yellow";
+        }
+        /* set color red for mins*/
+        if (mins >= 30) {
+          minsHand.style.color = "red";
+        } else {
+          minsHand.style.color = "Yellow";
+        }
+        console.log(seconds);
+        console.log(mins);
+        console.log(hour);
+      }
+      setInterval(setDate, 1000);
+    </script>
+  </body>
+</html>
